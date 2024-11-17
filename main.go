@@ -82,25 +82,25 @@ func printRandomQuote() {
 }
 
 func main() {
-	i := 0
-  limit := 3000;
+	limit := 2000
 
-  // simulate some bursty behavior
-  for {
-	    // fill log with 3k lines
-	    for i < limit {
-		    printRandomQuote()
-	    }
+	// simulate some bursty behavior
+	for {
+		// fill log with 3k lines
+		for i := 0; i < limit; i++ {
+			printRandomQuote()
+			time.Sleep(5 * time.Millisecond)
+		}
 
-      // wait 5 minutes
-      time.Sleep(5 * time.Minute)
-      limit = rand.Intn(5000);
+		// wait 5 minutes
+		time.Sleep(5 * time.Minute)
 
-	    // now one quote every 2s
-      i = 0;
-	    for i < 200 {
-		    printRandomQuote()
-		    time.Sleep(2 * time.Second)
-	    }
-  }
+		// now one quote every 2s
+		for i := 0; i < 200; i++ {
+			printRandomQuote()
+			time.Sleep(1 * time.Second)
+		}
+
+		limit = rand.Intn(5000)
+	}
 }

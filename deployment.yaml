@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quoter-deployment
+  labels:
+    app: quoter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: quoter
+  template:
+    metadata:
+      labels:
+        app: quoter
+    spec:
+      containers:
+        - name: quoter
+          image: quoter:latest
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
